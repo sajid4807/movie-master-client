@@ -1,10 +1,175 @@
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const Register = () => {
-    return (
-        <div>
-            <h3>Register</h3>
-        </div>
-    );
+  const {createUser,signInWithGoogle} =useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const [error,setError] = useState('')
+    const handleRegister =(e) => {
+      e.preventDefault()
+      const form = e.target
+      const displayName = form.name.value;
+      const email = form.email.value;
+      const photoURL = form.photo.value;
+      const password = form.password.value;
+      const passwordRex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/
+      if(!passwordRex.test(password)){
+        Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "❌ Password must include at least one uppercase letter, one lowercase letter, and be at least 6 characters long.",
+  
+});
+return;
+      }
+
+      const newUser ={displayName,email}
+      console.log(newUser)
+      createUser(email,password)
+      .then(res => {
+        console.log(res.user)
+        Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Register successful 🎉",
+  showConfirmButton: false,
+  timer: 1500
+});
+     navigate(`${location.state ? location.state: '/'}`)
+      })
+      .catch(error=>{
+        // console.log(error.message)
+        Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "❌ Registration failed. Please try again.",
+});
+        setError(error.message)
+      })
+
+    }
+
+    const handleGoogleSignin = () => {
+      signInWithGoogle()
+      .then(res => {
+        console.log(res.user)
+        Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Register successful 🎉",
+  showConfirmButton: false,
+  timer: 1500
+});
+navigate(`${location.state? location.state: '/'}`)
+      })
+      .catch(error => {
+        // console.log(error.message)
+        Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Account not found. Try again or sign up 🚫",
+});
+        setError(error.message)
+      })
+    }
+    
+
+
+
+
+
+
+  return (
+   
+    <div className="flex items-center h-screen">
+      <div className="card bg-base-100 p-5 mx-auto w-[350px] md:w-[450px] shrink-0 shadow-2xl">
+      <h1 className="text-5xl font-bold mb-2 text-center">Register</h1>
+
+    <div className="">
+       <form onSubmit={handleRegister} className="space-y-4">
+            {/* name */}
+            <div>
+              <label className="block text-sm font-medium mb-1">Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter Your Name"
+                className="input w-full"
+              />
+            </div>
+            {/* email */}
+            <div>
+              <label className="block text-sm font-medium mb-1">Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your Email"
+                className="input w-full"
+              />
+            </div>
+            {/* Photo URL */}
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Photo URL
+              </label>
+              <input
+                type="text"
+                name="photo"
+                placeholder="Photo URL"
+                className="input w-full"
+              />
+            </div>
+            {/* password */}
+            <div className="relative">
+              <label className="block text-sm font-medium mb-1">Password</label>
+              <input
+                // type={show ? "text" : "password"}
+                type="password"
+                name="password"
+                placeholder="Enter Your Password"
+                className="input w-full"
+              />
+              {/* <span
+                onClick={() => setShow(!show)}
+                className="absolute right-[10px] top-[32px] cursor-pointer z-50"
+              >
+                {show ? <FaEye size={24} /> : <IoEyeOff size={24} />}
+              </span> */}
+            </div>
+            {error && <p>{error}</p>}
+            <button
+              type="submit"
+              className="btn w-full"
+            >
+              Register
+            </button>
+            {/* Google Signin */}
+            <button
+              type="button"
+              onClick={handleGoogleSignin}
+              className="btn w-full cursor-pointer"
+            >
+              Login with Google
+            </button>
+            <div className="text-center mt-3">
+              <p className="text-sm text-primary">
+                Already have an account?{" "}
+                <Link
+                  to="/login"
+                  className="text-base-content hover:text-primary font-medium underline"
+                >
+                  Log in
+                </Link>
+              </p>
+            </div>
+          </form>
+    </div>
+    </div>
+    </div>
+  );
 };
 
 export default Register;

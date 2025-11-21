@@ -7,6 +7,7 @@
   default: true;
   --color-primary: #9ab;
   --color-secondary: #fff;
+  --color-base-content: #14181c;
 }
 /* custom css */
 /* body{
@@ -16,9 +17,9 @@
   max-width: 1350px;
   margin: 0 auto 0 auto;
 }
-.text-color{
+/* .text-color{
   color: var(--color-primary);
-}
+} */
 .smooth-underline {
   position: relative;
   display: inline-block;
