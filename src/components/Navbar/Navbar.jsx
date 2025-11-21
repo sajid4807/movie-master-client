@@ -1,13 +1,27 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import MyLink from "../MyLink/MyLink";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-
+    const navigate = useNavigate()
+    const location = useLocation()
+    const{user,signOutUser} = useAuth()
     const link = <>
          <li><MyLink to='/allMovies'>All Movies</MyLink></li>
          <li><MyLink to='/myCollection'>My Collection</MyLink></li>
          <li><MyLink to='/register'>Register</MyLink></li>
     </>
+
+
+  const handleLogout = () =>{
+    signOutUser()
+    navigate(`${location.state ? location.state : '/'}`)
+    // .then(res => {
+    //   )
+    // })
+  }
+
+
   return (
     <div>
       <div className="navbar bg-[#2c3440] ">
@@ -49,7 +63,22 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+         {user ?  (
+          <div className="flex gap-5 items-center">
+            <div>
+              <Link>
+              <img src={`${user ? user?.photoURL : ''}`} alt="" className="w-12 h-12 rounded-full"/>
+              </Link>
+            </div>
+            <button onClick={handleLogout} className="btn-glow">
+              Logout
+              </button>              
+         </div>) : (
+          <div className="space-x-5">
+            <Link to='/register' className="btn-glow">Register</Link>
+            <Link to='/login' className="btn-glow">Login</Link>
+          </div>
+         ) }
         </div>
       </div>
     </div>

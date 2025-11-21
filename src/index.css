@@ -57,3 +57,38 @@
 .smooth-border-underline.active {
   border-color: currentColor;
 }
+
+.btn-glow {
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #6a00f4, #00c6ff);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s ease;
+  outline: none;
+}
+
+.btn-glow::before {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -80%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, #ffffff40, transparent 50%);
+  transform: scale(0);
+  transition: 0.4s;
+}
+
+.btn-glow:hover::before {
+  transform: scale(1);
+}
+
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(100, 200, 255, 0.5);
+}

@@ -2,12 +2,15 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
+import { FaEye } from "react-icons/fa";
+import { IoEyeOff } from "react-icons/io5";
 
 const Register = () => {
-  const {createUser,signInWithGoogle} =useAuth()
+  const {createUser,signInWithGoogle,setUser} =useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const [error,setError] = useState('')
+  const [show,setShow] = useState(false)
     const handleRegister =(e) => {
       e.preventDefault()
       const form = e.target
@@ -30,7 +33,7 @@ return;
       console.log(newUser)
       createUser(email,password)
       .then(res => {
-        console.log(res.user)
+        // console.log(res.user)
         Swal.fire({
   position: "top-end",
   icon: "success",
@@ -38,6 +41,7 @@ return;
   showConfirmButton: false,
   timer: 1500
 });
+setUser(res.user)
      navigate(`${location.state ? location.state: '/'}`)
       })
       .catch(error=>{
@@ -55,11 +59,10 @@ return;
     const handleGoogleSignin = () => {
       signInWithGoogle()
       .then(res => {
-        console.log(res.user)
         Swal.fire({
   position: "top-end",
   icon: "success",
-  title: "Register successful 🎉",
+  title: "Google SignIn successful 🎉",
   showConfirmButton: false,
   timer: 1500
 });
@@ -75,12 +78,6 @@ navigate(`${location.state? location.state: '/'}`)
         setError(error.message)
       })
     }
-    
-
-
-
-
-
 
   return (
    
@@ -126,23 +123,22 @@ navigate(`${location.state? location.state: '/'}`)
             <div className="relative">
               <label className="block text-sm font-medium mb-1">Password</label>
               <input
-                // type={show ? "text" : "password"}
-                type="password"
+                type={show ? "text" : "password"}
                 name="password"
                 placeholder="Enter Your Password"
                 className="input w-full"
               />
-              {/* <span
+              <span
                 onClick={() => setShow(!show)}
                 className="absolute right-[10px] top-[32px] cursor-pointer z-50"
               >
                 {show ? <FaEye size={24} /> : <IoEyeOff size={24} />}
-              </span> */}
+              </span>
             </div>
             {error && <p>{error}</p>}
             <button
               type="submit"
-              className="btn w-full"
+              className="btn btn-glow w-full"
             >
               Register
             </button>
@@ -150,7 +146,7 @@ navigate(`${location.state? location.state: '/'}`)
             <button
               type="button"
               onClick={handleGoogleSignin}
-              className="btn w-full cursor-pointer"
+              className="btn btn-glow w-full cursor-pointer"
             >
               Login with Google
             </button>
@@ -161,7 +157,7 @@ navigate(`${location.state? location.state: '/'}`)
                   to="/login"
                   className="text-base-content hover:text-primary font-medium underline"
                 >
-                  Log in
+                  Login
                 </Link>
               </p>
             </div>
