@@ -5,15 +5,18 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import AllMovies from "../pages/AllMovies/AllMovies";
 import MyCollection from "../pages/MyCollection/MyCollection";
+import Loading from "../components/Loading/Loading";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element:<MainLayout></MainLayout>,
+    hydrateFallbackElement:<Loading/>,
     children:[
         {
             index:true,
-            element:<Home></Home>
+            element:<Home></Home>,
+            hydrateFallbackElement:<Loading/>
         },
         {
             path:'/register',

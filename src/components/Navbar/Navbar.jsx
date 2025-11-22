@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import MyLink from "../MyLink/MyLink";
 import useAuth from "../../hooks/useAuth";
 
@@ -7,6 +7,7 @@ const Navbar = () => {
     const location = useLocation()
     const{user,signOutUser} = useAuth()
     const link = <>
+         <li><MyLink to='/'>Home</MyLink></li>
          <li><MyLink to='/allMovies'>All Movies</MyLink></li>
          <li><MyLink to='/myCollection'>My Collection</MyLink></li>
          {/* <li><MyLink to='/register'>Register</MyLink></li> */}

@@ -11,7 +11,7 @@ const TopRatedMovies = ({ totalMovies }) => {
         {movies.map((movie) => (
           <div key={movie._id} className="card">
               <img src={movie.posterUrl} alt="movie" />
-                <h2 className="mt-2">{movie.title}</h2>
+                <h2 className="mt-2 text-secondary font-medium">{movie.title}</h2>
                 {/* <p>{movie.rating}</p> */}
           </div>
         ))}

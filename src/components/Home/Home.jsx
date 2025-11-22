@@ -4,6 +4,8 @@ import StatisticsSection from "../StatisticsSection/StatisticsSection";
 import Loading from "../Loading/Loading";
 import TopRatedMovies from "../TopRatedMovies/TopRatedMovies";
 import LatestMovies from "../LatestMovies/LatestMovies";
+import AboutPlatform from "../AboutPlatform/AboutPlatform";
+import LoadingCard from "../Loading/LoadingCard";
 const moviesPromise = fetch('http://localhost:3000/movies')
 .then(res => res.json())
 const userPromise = fetch('http://localhost:3000/user')
@@ -14,15 +16,16 @@ const Home = () => {
     return (
         <div className="body-width px-4 md:px-0 ">
             <Suspense fallback={<Loading></Loading>}><Banner moviesPromise={moviesPromise}></Banner></Suspense>
-            <Suspense fallback={<Loading></Loading>}>
+            <Suspense fallback={<LoadingCard/>}>
                 <StatisticsSection userPromise={userPromise} totalMovies={totalMovies}></StatisticsSection>
             </Suspense>
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={<LoadingCard/>}>
                 <TopRatedMovies totalMovies={totalMovies}></TopRatedMovies>
             </Suspense>
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={<LoadingCard/>}>
                 <LatestMovies totalMovies={totalMovies}></LatestMovies>
             </Suspense>
+            <AboutPlatform></AboutPlatform>
 
         </div>
     );
