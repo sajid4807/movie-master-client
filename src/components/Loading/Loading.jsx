@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Loading = () => {
     return (
-        <div className="flex items-center justify-center min-h-screen bg-white">
+        <div className="flex items-center justify-center min-h-screen bg-base-content">
       <motion.div
         className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-2xl"
         animate={{

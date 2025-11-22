@@ -31,11 +31,12 @@ const Register = () => {
 return;
       }
 
-      const newUser ={displayName,email}
-      console.log(newUser)
+      const newUser ={displayName,email,photoURL}
+      // console.log(newUser)
       createUser(email,password)
       .then(res => {
-        // console.log(res.user)
+        console.log(res.user)
+        // const result = res.user
         Swal.fire({
   position: "top-end",
   icon: "success",
@@ -43,7 +44,12 @@ return;
   showConfirmButton: false,
   timer: 1500
 });
-setUser(res.user)
+
+axiosInstance.post('/user', newUser)
+.then(data => {
+          console.log('after saving data',data)
+      setUser(data.data)
+})
      navigate(`${location.state ? location.state: '/'}`)
       })
       .catch(error=>{
@@ -78,18 +84,6 @@ axiosInstance.post('/user', newUser)
 .then(data => {
           console.log('after saving data',data)
 })
-
-// fetch('http://localhost:3000/user',{
-//           method: "POST",
-//           headers: {
-//             "content-type": "application/json",
-//           },
-//           body: JSON.stringify(newUser),
-//         })
-//         .then(res => res.json())
-//         .then(data => {
-//           console.log('after saving data',data)
-//         })
 navigate(`${location.state? location.state: '/'}`)
       })
       .catch(error => {

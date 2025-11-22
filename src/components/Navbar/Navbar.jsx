@@ -64,7 +64,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
          {user ?  (
-          <div className="flex gap-5 items-center">
+          <div className="flex gap-5 items-center z-10">
             <div className="flex items-center">
 
 

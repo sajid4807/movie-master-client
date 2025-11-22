@@ -5,7 +5,6 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Loading from "../Loading/Loading";
 
 const Banner = ({moviesPromise}) => {
     const movies = use(moviesPromise)
@@ -17,7 +16,7 @@ const Banner = ({moviesPromise}) => {
    
     
     return (
-    <div className="my-12">
+    <div className="py-12">
         <Swiper
       modules={[Navigation, Pagination, Autoplay]}
       navigation
