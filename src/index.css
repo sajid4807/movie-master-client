@@ -57,12 +57,11 @@
 .smooth-border-underline.active {
   border-color: currentColor;
 }
-
-.btn-glow {
-  padding: 12px 28px;
+.btn-glow{
+  color: #fff;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #fff;
+  padding: 12px 28px;
   background: linear-gradient(135deg, #6a00f4, #00c6ff);
   border: none;
   border-radius: 10px;
@@ -71,7 +70,6 @@
   transition: 0.3s ease;
   outline: none;
 }
-
 .btn-glow::before {
   content: "";
   position: absolute;
@@ -83,11 +81,6 @@
   transform: scale(0);
   transition: 0.4s;
 }
-
-.btn-glow:hover::before {
-  transform: scale(1);
-}
-
 .btn-glow:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(100, 200, 255, 0.5);

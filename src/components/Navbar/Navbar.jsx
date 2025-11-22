@@ -9,7 +9,7 @@ const Navbar = () => {
     const link = <>
          <li><MyLink to='/allMovies'>All Movies</MyLink></li>
          <li><MyLink to='/myCollection'>My Collection</MyLink></li>
-         <li><MyLink to='/register'>Register</MyLink></li>
+         {/* <li><MyLink to='/register'>Register</MyLink></li> */}
     </>
 
 
@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar bg-[#2c3440] ">
+      <div className="navbar bg-[#2c3440] px-4 md:px-24 ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -65,10 +65,32 @@ const Navbar = () => {
         <div className="navbar-end">
          {user ?  (
           <div className="flex gap-5 items-center">
-            <div>
-              <Link>
+            <div className="flex items-center">
+
+
+
+            <div className="dropdown">
+            <div tabIndex={0} role="button" className="">
+                            <img src={`${user ? user?.photoURL : ''}`} alt="" className="w-12 h-12 rounded-full"/>
+
+            </div>
+            <ul
+              tabIndex="-1"
+              className="menu menu-sm dropdown-content bg-[#2c3440] rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              
+              {link}
+             
+            </ul>
+          </div>
+
+
+
+
+
+              {/* <Link>
               <img src={`${user ? user?.photoURL : ''}`} alt="" className="w-12 h-12 rounded-full"/>
-              </Link>
+              </Link> */}
             </div>
             <button onClick={handleLogout} className="btn-glow">
               Logout

@@ -4,9 +4,11 @@ import { IoEyeOff } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxios from "../../hooks/useAxios";
 
 const Login = () => {
     const {signInUser,setUser,signInWithGoogle} = useAuth()
+    const axiosInstance = useAxios()
     const navigate = useNavigate()
     const location = useLocation()
     const [error,setError] =useState('')
@@ -49,6 +51,12 @@ const Login = () => {
     const handleGoogleSignin = () => {
         signInWithGoogle()
               .then(res => {
+                // console.log(res.user)
+                 const newUser = {
+          name: res.user.displayName,
+          email: res.user.email,
+          image: res.user.photoURL,
+        };
                 Swal.fire({
           position: "top-end",
           icon: "success",
@@ -56,6 +64,24 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500
         });
+
+        axiosInstance.post('/user',newUser)
+        .then(data => {
+          console.log('after saving data',data)
+        })
+
+
+        // fetch('http://localhost:3000/user',{
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(newUser),
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+        //   console.log('after saving data',data)
+        // })
         navigate(`${location.state? location.state: '/'}`)
               })
               .catch(error => {

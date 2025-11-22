@@ -2,8 +2,9 @@
 const AllMovies = () => {
     return (
         <div>
-            AllMovies
-        </div>
+           
+        <h2 className="text-lg md:text-6xl md:font-extrabold "> AllMovies</h2>      
+</div>
     );
 };
 

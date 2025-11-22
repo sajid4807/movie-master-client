@@ -4,9 +4,11 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
+import useAxios from "../../hooks/useAxios";
 
 const Register = () => {
   const {createUser,signInWithGoogle,setUser} =useAuth()
+  const axiosInstance =useAxios()
   const navigate = useNavigate()
   const location = useLocation()
   const [error,setError] = useState('')
@@ -59,6 +61,11 @@ setUser(res.user)
     const handleGoogleSignin = () => {
       signInWithGoogle()
       .then(res => {
+        const newUser = {
+          name: res.user.displayName,
+          email: res.user.email,
+          image: res.user.photoURL,
+        };
         Swal.fire({
   position: "top-end",
   icon: "success",
@@ -66,6 +73,23 @@ setUser(res.user)
   showConfirmButton: false,
   timer: 1500
 });
+
+axiosInstance.post('/user', newUser)
+.then(data => {
+          console.log('after saving data',data)
+})
+
+// fetch('http://localhost:3000/user',{
+//           method: "POST",
+//           headers: {
+//             "content-type": "application/json",
+//           },
+//           body: JSON.stringify(newUser),
+//         })
+//         .then(res => res.json())
+//         .then(data => {
+//           console.log('after saving data',data)
+//         })
 navigate(`${location.state? location.state: '/'}`)
       })
       .catch(error => {
@@ -95,6 +119,7 @@ navigate(`${location.state? location.state: '/'}`)
                 name="name"
                 placeholder="Enter Your Name"
                 className="input w-full"
+                required
               />
             </div>
             {/* email */}
@@ -105,6 +130,7 @@ navigate(`${location.state? location.state: '/'}`)
                 name="email"
                 placeholder="Enter your Email"
                 className="input w-full"
+                required
               />
             </div>
             {/* Photo URL */}
@@ -117,6 +143,7 @@ navigate(`${location.state? location.state: '/'}`)
                 name="photo"
                 placeholder="Photo URL"
                 className="input w-full"
+                required
               />
             </div>
             {/* password */}
@@ -127,6 +154,7 @@ navigate(`${location.state? location.state: '/'}`)
                 name="password"
                 placeholder="Enter Your Password"
                 className="input w-full"
+                required
               />
               <span
                 onClick={() => setShow(!show)}
@@ -142,6 +170,7 @@ navigate(`${location.state? location.state: '/'}`)
             >
               Register
             </button>
+            <p className="flex justify-center font-bold">------------------------------------</p>
             {/* Google Signin */}
             <button
               type="button"
