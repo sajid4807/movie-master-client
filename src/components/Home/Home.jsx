@@ -3,6 +3,7 @@ import Banner from "../Banner/Banner";
 import StatisticsSection from "../StatisticsSection/StatisticsSection";
 import Loading from "../Loading/Loading";
 import TopRatedMovies from "../TopRatedMovies/TopRatedMovies";
+import LatestMovies from "../LatestMovies/LatestMovies";
 const moviesPromise = fetch('http://localhost:3000/movies')
 .then(res => res.json())
 const userPromise = fetch('http://localhost:3000/user')
@@ -16,9 +17,13 @@ const Home = () => {
             <Suspense fallback={<Loading></Loading>}>
                 <StatisticsSection userPromise={userPromise} totalMovies={totalMovies}></StatisticsSection>
             </Suspense>
-            <Suspense>
+            <Suspense fallback={<Loading/>}>
                 <TopRatedMovies totalMovies={totalMovies}></TopRatedMovies>
             </Suspense>
+            <Suspense fallback={<Loading/>}>
+                <LatestMovies totalMovies={totalMovies}></LatestMovies>
+            </Suspense>
+
         </div>
     );
 };

@@ -1,5 +1,5 @@
 
-import { use, useState } from "react";
+import { use } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -16,7 +16,7 @@ const Banner = ({moviesPromise}) => {
    
     
     return (
-    <div className="py-12">
+    <div className="py-10 md:py-20">
         <Swiper
       modules={[Navigation, Pagination, Autoplay]}
       navigation
