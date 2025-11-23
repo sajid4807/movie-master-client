@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 const MovieDetails = () => {
     const movie = useLoaderData()
     const {user} =useAuth()
-    const {title,genre,addedAt,addedBy,country,language,posterUrl,plotSummary,duration,rating,cast,director,releaseYear,} =movie
+    const {_id,title,genre,addedAt,addedBy,country,language,posterUrl,plotSummary,duration,rating,cast,director,releaseYear,} =movie
     return (
         <div className="body-width px-4 md:px-0 py-10 md:py-20 text-secondary">
             <div className="grid gird-row md:grid-cols-3 gap-8">
@@ -14,7 +14,7 @@ const MovieDetails = () => {
                         user ? (
                             <div className="flex justify-between mt-10">
                         <div>
-                            <Link to='/edit' className="btn-glow">Edit</Link>
+                            <Link to={`/edit/${_id}`} className="btn-glow">Edit</Link>
                         </div>
                         <div>
                             <Link className="btn-glow">Delete</Link>

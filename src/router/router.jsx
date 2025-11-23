@@ -9,6 +9,7 @@ import Loading from "../components/Loading/Loading";
 import LoadingCard from "../components/Loading/LoadingCard";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
 import Edit from "../components/Edit/Edit";
+import PrivateRoute from "../components/Private/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/myCollection",
-        element: <MyCollection></MyCollection>,
+        element: (
+          <PrivateRoute>
+            <MyCollection></MyCollection>
+          </PrivateRoute>
+        ),
       },
       {
         path: "movieDetails/:id",
@@ -46,8 +51,15 @@ export const router = createBrowserRouter([
         element: <MovieDetails />,
       },
       {
-        path:'/edit',
-        element:<Edit/>
+        path:'/edit/:id',
+        loader:({params}) => fetch(`http://localhost:3000/allMovies/${params.id}`),
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:3000/allMovies/${params.id}`),
+        element:(
+          <PrivateRoute>
+            <Edit/>
+          </PrivateRoute>
+        )
       }
       // {
       //     path:"movieDetails/:id",
