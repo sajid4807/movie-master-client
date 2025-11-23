@@ -6,6 +6,7 @@ const Navbar = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const{user,signOutUser} = useAuth()
+    // console.log(user)
     const link = <>
          <li><MyLink to='/'>Home</MyLink></li>
          <li><MyLink to='/allMovies'>All Movies</MyLink></li>
@@ -72,7 +73,7 @@ const Navbar = () => {
 
             <div className="dropdown">
             <div tabIndex={0} role="button" className="">
-                            <img src={`${user ? user?.photoURL : ''}`} alt="" className="w-12 h-12 rounded-full"/>
+                            <img referrerPolicy="no-referrer" src={`${user ? user?.photoURL : ''}`} alt="" className="w-12 h-12 rounded-full"/>
 
             </div>
             <ul

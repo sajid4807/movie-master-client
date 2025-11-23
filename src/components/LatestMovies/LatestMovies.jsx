@@ -3,7 +3,7 @@ import { use } from "react";
 const LatestMovies = ({ totalMovies }) => {
   const allMovies = use(totalMovies);
   const movies = allMovies.sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt)).slice(0, 6);
-  console.log(movies);
+  // console.log(movies);
   return (
     <div className="pb-10 md:pb-20 text-primary">
       <h3 className="mb-5 text-secondary border-l-4 border-l-[#00c6ff] pl-3 font-bold text-xl">

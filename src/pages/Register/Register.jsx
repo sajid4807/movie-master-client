@@ -7,7 +7,7 @@ import { IoEyeOff } from "react-icons/io5";
 import useAxios from "../../hooks/useAxios";
 
 const Register = () => {
-  const {createUser,signInWithGoogle,setUser} =useAuth()
+  const {createUser,signInWithGoogle,setUser,profile} =useAuth()
   const axiosInstance =useAxios()
   const navigate = useNavigate()
   const location = useLocation()
@@ -35,7 +35,8 @@ return;
       // console.log(newUser)
       createUser(email,password)
       .then(res => {
-        console.log(res.user)
+        // console.log(res.user)
+        const user = res.user;
         // const result = res.user
         Swal.fire({
   position: "top-end",
@@ -44,13 +45,25 @@ return;
   showConfirmButton: false,
   timer: 1500
 });
+profile({ displayName, photoURL })
+          .then(() => {
+            setUser(...user, displayName, photoURL);
 
+
+            // toast.success("Profile updated successfully! 🎉");
+          })
+          .catch((error) => {
+            // toast.error(error.message);
+            setError(error.message);
+          });
+          
 axiosInstance.post('/user', newUser)
 .then(data => {
-          console.log('after saving data',data)
+          // console.log('after saving data',data)
       setUser(data.data)
 })
-     navigate(`${location.state ? location.state: '/'}`)
+navigate(`${location.state ? location.state: '/'}`)
+window.location.reload()
       })
       .catch(error=>{
         // console.log(error.message)
