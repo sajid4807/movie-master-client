@@ -8,6 +8,7 @@ import MyCollection from "../pages/MyCollection/MyCollection";
 import Loading from "../components/Loading/Loading";
 import LoadingCard from "../components/Loading/LoadingCard";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
+import Edit from "../components/Edit/Edit";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
           fetch(`http://localhost:3000/allMovies/${params.id}`),
         element: <MovieDetails />,
       },
+      {
+        path:'/edit',
+        element:<Edit/>
+      }
       // {
       //     path:"movieDetails/:id",
       //     loader:() => fetch(`http://localhost:3000/allMovies`),
