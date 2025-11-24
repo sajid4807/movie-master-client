@@ -11,7 +11,7 @@ const Navbar = () => {
          <li><MyLink to='/'>Home</MyLink></li>
          <li><MyLink to='/allMovies'>All Movies</MyLink></li>
          <li><MyLink to='/myCollection'>My Collection</MyLink></li>
-         {/* <li><MyLink to='/register'>Register</MyLink></li> */}
+         <li><MyLink to='/upload'>Upload Movie</MyLink></li>
     </>
 
 

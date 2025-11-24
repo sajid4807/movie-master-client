@@ -10,6 +10,7 @@ import LoadingCard from "../components/Loading/LoadingCard";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
 import Edit from "../components/Edit/Edit";
 import PrivateRoute from "../components/Private/PrivateRoute";
+import UploadMovie from "../pages/UploadMovie/UploadMovie";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,13 @@ export const router = createBrowserRouter([
             <Edit/>
           </PrivateRoute>
         )
+      },
+      {
+        path:'/upload',
+        // loader:()=> fetch('http://localhost:3000/allMovies/add'),
+        element:<PrivateRoute>
+          <UploadMovie></UploadMovie>
+        </PrivateRoute>
       }
       // {
       //     path:"movieDetails/:id",

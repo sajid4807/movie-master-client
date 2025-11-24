@@ -50,8 +50,8 @@ const MovieDetails = () => {
                             <Link to={`/edit/${_id}`} className="btn-glow">Edit</Link>
                         </div>
                         <div>
-                            {/* <Link className="btn-glow">Delete</Link> */}
-                            <button onClick={handleMovieDelete} className="btn-glow">Delete</button>
+                            <Link onClick={handleMovieDelete} className="btn-glow">Delete</Link>
+                            {/* <button  className="btn-glow">Delete</button> */}
                         </div>
                     </div>
                         ) :

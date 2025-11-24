@@ -22,12 +22,13 @@ const Edit = () => {
     const posterUrl = form.posterUrl.value
     const country = form.country.value
     const language = form.language.value
+    const plotSummary = form.plotSummary.value
     const releaseYear = parseInt(form.releaseYear.value)
   const duration = parseInt(form.duration.value)
   const rating = parseFloat(form.rating.value)
     const addedBy = user.email
     const newMovie ={
-        title,genre,cast,director,posterUrl,country,language,duration,rating,releaseYear,addedBy
+        title,genre,cast,plotSummary,director,posterUrl,country,language,duration,rating,releaseYear,addedBy
     }
     authInfo.patch(`/allMovies/${_id}`,newMovie)
     .then(data=> {
@@ -166,11 +167,13 @@ const Edit = () => {
               <textarea 
                 rows="3"
                 cols="30"
+                name="plotSummary"
   defaultValue={plotSummary}
   className="input w-full  overflow-y-auto overflow-x-hidden" />
             </div>
             <div>
-              <input type="submit" value="submit" className="btn btn-glow w-full cursor-pointer" />
+              <button className="btn btn-glow w-full cursor-pointer">Submit</button>
+              {/* <input type="submit" value="submit" className="btn btn-glow w-full cursor-pointer" /> */}
             </div>
           </form>
     </div>
