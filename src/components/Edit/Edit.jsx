@@ -1,13 +1,16 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
+import Swal from "sweetalert2";
 
 const Edit = () => {
   const {user} =useAuth()
   const authInfo = useAxios()
+  const location =useLocation()
+  const navigate = useNavigate()
   // console.log(user.email)
   const movie = useLoaderData()
-  const {_id,title,genre,addedAt,addedBy,country,language,posterUrl,plotSummary,duration,rating,cast,director,releaseYear,} =movie
+  const {_id,title,genre,country,language,posterUrl,plotSummary,duration,rating,cast,director,releaseYear,} =movie
   // console.log(movie)
   const handleEdit= (e) => {
     e.preventDefault()
@@ -20,26 +23,29 @@ const Edit = () => {
     const country = form.country.value
     const language = form.language.value
     const releaseYear = parseInt(form.releaseYear.value)
-const duration = parseInt(form.duration.value)
-const rating = parseFloat(form.rating.value)
+  const duration = parseInt(form.duration.value)
+  const rating = parseFloat(form.rating.value)
     const addedBy = user.email
     const newMovie ={
         title,genre,cast,director,posterUrl,country,language,duration,rating,releaseYear,addedBy
     }
-    console.log(newMovie)
     authInfo.patch(`/allMovies/${_id}`,newMovie)
     .then(data=> {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Edit successful 🎉",
+        showConfirmButton: false,
+        timer: 1500
+      });
       console.log(data)
     })
-    
-
-
+    navigate(`${location.state ? location.state: `/movieDetails/${_id}`}`)
   }
   return (
-    <div className="flex items-center">
+    <div className="flex items-center py-10 md:py-20">
       <div className="card bg-base-100 p-5 mx-auto w-[350px] md:w-[450px] shrink-0 shadow-2xl">
       <h1 className="text-5xl font-bold mb-2 text-center">Edit</h1>
-
     <div className="">
        <form onSubmit={handleEdit} className="space-y-4">
             {/* title */}
@@ -52,15 +58,28 @@ const rating = parseFloat(form.rating.value)
                 className="input w-full"
               />
             </div>
+            {/* tow input */}
+            <div className="flex justify-between">
             {/* genre */}
-            <div>
-              <label className="block text-sm font-medium mb-1">Genre</label>
+              <div>
+                <label className="block text-sm font-medium mb-1">Genre</label>
               <input
                 type="text"
                 name="genre"
                 defaultValue={genre}
                 className="input w-full"
               />
+              </div>
+              {/* releaseYear */}
+            <div>
+              <label className="block text-sm font-medium mb-1">ReleaseYear</label>
+              <input
+                type="text"
+                name="releaseYear"
+                defaultValue={releaseYear}
+                className="input w-full"
+              />
+            </div>
             </div>
             {/* cast */}
             <div>
@@ -82,18 +101,6 @@ const rating = parseFloat(form.rating.value)
                 className="input w-full"
               />
             </div>
-            {/* email */}
-            {/* <div>
-              <label className="block text-sm font-medium mb-1">addedBy</label>
-              <input
-                type="email"
-                name="email"
-                defaultValue={movie.addedBy}
-                placeholder="Enter your Email"
-                className="input w-full"
-                required
-              />
-            </div> */}
             {/* Photo URL */}
             <div>
               <label className="block text-sm font-medium mb-1">
@@ -107,17 +114,19 @@ const rating = parseFloat(form.rating.value)
                 required
               />
             </div>
-            {/* country */}
-            <div>
-              <label className="block text-sm font-medium mb-1">Country</label>
+            {/* tow input */}
+            <div className="flex justify-between">
+              {/* country */}
+              <div>
+                <label className="block text-sm font-medium mb-1">Country</label>
               <input
                 type="text"
                 name="country"
                 defaultValue={country}
                 className="input w-full"
               />
-            </div>
-            {/* language */}
+              </div>
+              {/* language */}
             <div>
               <label className="block text-sm font-medium mb-1">Language</label>
               <input
@@ -127,17 +136,20 @@ const rating = parseFloat(form.rating.value)
                 className="input w-full"
               />
             </div>
+            </div>
+            {/* tow input */}
+            <div className="flex justify-between">
             {/* duration */}
-            <div>
-              <label className="block text-sm font-medium mb-1">Duration</label>
+              <div>
+                <label className="block text-sm font-medium mb-1">Duration</label>
               <input
                 type="text"
                 name="duration"
                 defaultValue={duration}
                 className="input w-full"
               />
-            </div>
-            {/* rating */}
+              </div>
+               {/* rating */}
             <div>
               <label className="block text-sm font-medium mb-1">Rating</label>
               <input
@@ -147,25 +159,15 @@ const rating = parseFloat(form.rating.value)
                 className="input w-full"
               />
             </div>
-            {/* releaseYear */}
-            <div>
-              <label className="block text-sm font-medium mb-1">ReleaseYear</label>
-              <input
-                type="text"
-                name="releaseYear"
-                defaultValue={releaseYear}
-                className="input w-full"
-              />
             </div>
             {/* plotSummary */}
             <div>
               <label className="block text-sm font-medium mb-1">PlotSummary</label>
               <textarea 
-                name="plotSummary" 
-                rows='3'
-                cols='3'
-                defaultValue={plotSummary}
-                className="input w-full" />
+                rows="3"
+                cols="30"
+  defaultValue={plotSummary}
+  className="input w-full  overflow-y-auto overflow-x-hidden" />
             </div>
             <div>
               <input type="submit" value="submit" className="btn btn-glow w-full cursor-pointer" />
