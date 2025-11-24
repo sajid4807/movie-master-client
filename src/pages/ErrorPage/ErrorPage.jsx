@@ -25,7 +25,8 @@ const ErrorPage = () => {
       <div className="relative w-80 md:w-96 mb-8">
         <img
         // image improve need further and image save file need
-          src="https://plus.unsplash.com/premium_photo-1710409625244-e9ed7e98f67b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          // src="https://plus.unsplash.com/premium_photo-1710409625244-e9ed7e98f67b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif"
           alt="Movie Illustration"
           className="w-full h-full rounded-lg shadow-2xl animate-float"
         />

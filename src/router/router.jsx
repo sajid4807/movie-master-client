@@ -12,6 +12,7 @@ import Edit from "../components/Edit/Edit";
 import PrivateRoute from "../components/Private/PrivateRoute";
 import UploadMovie from "../pages/UploadMovie/UploadMovie";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import ErrorId from "../components/ErrorId/ErrorId";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,7 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:3000/allMovies/${params.id}`),
         element: <MovieDetails />,
+        // errorElement:<ErrorId/>,
         hydrateFallbackElement:<Loading/>
       },
       {
@@ -73,7 +75,11 @@ export const router = createBrowserRouter([
           <UploadMovie></UploadMovie>
         </PrivateRoute>,
         hydrateFallbackElement:<Loading/>
-      }
+      },
+      {
+    path: "/*",
+    element:<ErrorPage/>
+  },
       // {
       //     path:"movieDetails/:id",
       //     loader:() => fetch(`http://localhost:3000/allMovies`),

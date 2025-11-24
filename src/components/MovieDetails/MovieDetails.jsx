@@ -2,6 +2,7 @@ import { Link, useLoaderData, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxios from "../../hooks/useAxios";
+import ErrorId from "../ErrorId/ErrorId";
 
 const MovieDetails = () => {
     const movie = useLoaderData()
@@ -10,6 +11,10 @@ const MovieDetails = () => {
     const navigate = useNavigate()
     const location = useLocation()
      const {_id,title,genre,addedAt,addedBy,country,language,posterUrl,plotSummary,duration,rating,cast,director,releaseYear,} =movie
+
+     if (!movie || !movie._id) {
+    return <ErrorId />;
+  }
 
     const handleMovieDelete = () => {
         Swal.fire({
