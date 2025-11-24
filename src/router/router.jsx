@@ -11,12 +11,14 @@ import MovieDetails from "../components/MovieDetails/MovieDetails";
 import Edit from "../components/Edit/Edit";
 import PrivateRoute from "../components/Private/PrivateRoute";
 import UploadMovie from "../pages/UploadMovie/UploadMovie";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
     hydrateFallbackElement: <Loading />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         index: true,
@@ -44,30 +46,33 @@ export const router = createBrowserRouter([
             <MyCollection></MyCollection>
           </PrivateRoute>
         ),
+        hydrateFallbackElement:<Loading/>
       },
       {
         path: "movieDetails/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:3000/allMovies/${params.id}`),
         element: <MovieDetails />,
+        hydrateFallbackElement:<Loading/>
       },
       {
         path:'/edit/:id',
         loader:({params}) => fetch(`http://localhost:3000/allMovies/${params.id}`),
-        // loader: ({ params }) =>
-        //   fetch(`http://localhost:3000/allMovies/${params.id}`),
         element:(
           <PrivateRoute>
             <Edit/>
           </PrivateRoute>
-        )
+        ),
+        hydrateFallbackElement:<Loading/>
+
       },
       {
         path:'/upload',
         // loader:()=> fetch('http://localhost:3000/allMovies/add'),
         element:<PrivateRoute>
           <UploadMovie></UploadMovie>
-        </PrivateRoute>
+        </PrivateRoute>,
+        hydrateFallbackElement:<Loading/>
       }
       // {
       //     path:"movieDetails/:id",
