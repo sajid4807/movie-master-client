@@ -69,19 +69,6 @@ const Login = () => {
         .then(data => {
           console.log('after saving data',data)
         })
-
-
-        // fetch('http://localhost:3000/user',{
-        //   method: "POST",
-        //   headers: {
-        //     "content-type": "application/json",
-        //   },
-        //   body: JSON.stringify(newUser),
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //   console.log('after saving data',data)
-        // })
         navigate(`${location.state? location.state: '/'}`)
               })
               .catch(error => {

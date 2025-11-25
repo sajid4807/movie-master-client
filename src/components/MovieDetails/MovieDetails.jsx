@@ -50,13 +50,12 @@ const MovieDetails = () => {
                     <img src={posterUrl} alt="movie details" className="w-full md:h-72" />
                     {
                         user ? (
-                            <div className="flex justify-between mt-10">
+                            <div className="flex gap-9 mt-5 md:mt-10">
                         <div>
-                            <Link to={`/edit/${_id}`} className="btn-glow">Edit</Link>
+                            <Link to={`/edit/${_id}`} className="btn btn-glow">Edit</Link>
                         </div>
                         <div>
-                            <Link onClick={handleMovieDelete} className="btn-glow">Delete</Link>
-                            {/* <button  className="btn-glow">Delete</button> */}
+                            <Link onClick={handleMovieDelete} className="btn btn-glow">Delete</Link>
                         </div>
                     </div>
                         ) :

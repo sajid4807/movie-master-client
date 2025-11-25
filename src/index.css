@@ -60,9 +60,6 @@
 }
 .btn-glow{
   color: #fff;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 12px 28px;
   background: linear-gradient(135deg, #6a00f4, #00c6ff);
   border: none;
   border-radius: 10px;

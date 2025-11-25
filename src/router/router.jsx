@@ -54,7 +54,6 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:3000/allMovies/${params.id}`),
         element: <MovieDetails />,
-        // errorElement:<ErrorId/>,
         hydrateFallbackElement:<Loading/>
       },
       {
@@ -70,7 +69,6 @@ export const router = createBrowserRouter([
       },
       {
         path:'/upload',
-        // loader:()=> fetch('http://localhost:3000/allMovies/add'),
         element:<PrivateRoute>
           <UploadMovie></UploadMovie>
         </PrivateRoute>,

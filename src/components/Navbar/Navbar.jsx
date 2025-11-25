@@ -76,7 +76,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-[#2c3440] rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-[#2c3440] rounded-box z-999 mt-3 w-52 p-2 shadow"
             >
               
               {link}
@@ -106,29 +106,25 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-[#2c3440] rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-[#2c3440] rounded-box z-99 mt-3 w-52 p-2 shadow"
             >
-         <li><MyLink to='/add'>My Profile</MyLink></li>
+         {/* <li><MyLink to='/allMovie'>My Profile</MyLink></li> */}
          {/* <li><MyLink to='/allMovies'>All Movies</MyLink></li> */}
          <li><button className="smooth-border-underline " onClick={handleLogout}>LogOut</button></li>
             </ul>
           </div>
 
-
-
-
-
               {/* <Link>
               <img src={`${user ? user?.photoURL : ''}`} alt="" className="w-12 h-12 rounded-full"/>
               </Link> */}
             </div>
-            <button onClick={handleLogout} className="btn-glow">
+            <button onClick={handleLogout} className="btn btn-glow">
               Logout
               </button>              
          </div>) : (
           <div className="space-x-5">
-            <Link to='/register' className="btn-glow">Register</Link>
-            <Link to='/login' className="btn-glow">Login</Link>
+            <Link to='/register' className="btn btn-glow">Register</Link>
+            <Link to='/login' className="btn btn-glow">Login</Link>
           </div>
          ) }
         </div>

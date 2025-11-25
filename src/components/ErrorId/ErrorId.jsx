@@ -30,7 +30,7 @@ const ErrorId = () => {
       <Link
         to="/game"
         // className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold shadow-lg hover:bg-blue-700 transition-all duration-300"
-        className="btn-glow"
+        className="btn btn-glow"
       >
         Back All Games
       </Link>

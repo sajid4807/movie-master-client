@@ -34,7 +34,7 @@ const ErrorPage = () => {
       {/* Go Back Home Button */}
       <Link
         to="/"
-        className="btn-glow"
+        className="btn btn-glow"
       >
         Go Back Home
       </Link>
