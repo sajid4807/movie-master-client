@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router";
 import MyLink from "../MyLink/MyLink";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -10,13 +11,40 @@ const Navbar = () => {
     const link = <>
          <li><MyLink to='/'>Home</MyLink></li>
          <li><MyLink to='/allMovies'>All Movies</MyLink></li>
-         <li><MyLink to='/myCollection'>My Collection</MyLink></li>
+         {
+          user ? <li><MyLink to='/myCollection'>My Collection</MyLink></li> :''
+         }
          <li><MyLink to='/upload'>Upload Movie</MyLink></li>
     </>
 
 
   const handleLogout = () =>{
+    Swal.fire({
+  title: "Are you sure?",
+  // text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, logout it!"
+}).then((result) => {
+  if (result.isConfirmed) {
     signOutUser()
+    Swal.fire({
+      title: "Logout!",
+      text: "Are you sure for logout.",
+      icon: "success"
+    });
+  }
+});
+    // signOutUser()
+    // Swal.fire({
+    //   position: "top-end",
+    //   icon: "success",
+    //   title: "Google SignIn successful 🎉",
+    //   showConfirmButton: false,
+    //   timer: 1500
+    // });
     navigate(`${location.state ? location.state : '/'}`)
     // .then(res => {
     //   )
@@ -80,9 +108,9 @@ const Navbar = () => {
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-[#2c3440] rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-              
-              {link}
-             
+         <li><MyLink to='/add'>My Profile</MyLink></li>
+         {/* <li><MyLink to='/allMovies'>All Movies</MyLink></li> */}
+         <li><button className="smooth-border-underline " onClick={handleLogout}>LogOut</button></li>
             </ul>
           </div>
 

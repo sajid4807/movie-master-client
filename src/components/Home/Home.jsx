@@ -6,6 +6,7 @@ import TopRatedMovies from "../TopRatedMovies/TopRatedMovies";
 import LatestMovies from "../LatestMovies/LatestMovies";
 import AboutPlatform from "../AboutPlatform/AboutPlatform";
 import LoadingCard from "../Loading/LoadingCard";
+import Genre from "../Genre/Genre";
 const moviesPromise = fetch('http://localhost:3000/movies')
 .then(res => res.json())
 const userPromise = fetch('http://localhost:3000/user')
@@ -25,6 +26,7 @@ const Home = () => {
             <Suspense fallback={<LoadingCard/>}>
                 <LatestMovies totalMovies={totalMovies}></LatestMovies>
             </Suspense>
+            <Genre></Genre>
             <AboutPlatform></AboutPlatform>
 
         </div>
