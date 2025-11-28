@@ -3,8 +3,8 @@ const ErrorId = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-base-content p-6 relative overflow-hidden">
         {/* Animated Background Light / Glow */}
-      <div className="absolute w-[400px] h-[400px] bg-purple-700 opacity-20 rounded-full top-[-50px] left-[-50px] animate-pulse-slow"></div>
-      <div className="absolute w-[300px] h-[300px] bg-blue-500 opacity-20 rounded-full bottom-[-50px] right-[-50px] animate-pulse-slow-reverse"></div>
+      <div className="absolute hidden md:block w-[400px] h-[400px] bg-purple-700 opacity-20 rounded-full top-[-50px] left-[-50px] animate-pulse-slow"></div>
+      <div className="absolute hidden md:block w-[300px] h-[300px] bg-blue-500 opacity-20 rounded-full bottom-[-50px] right-[-50px] animate-pulse-slow-reverse"></div>
       <div className="text-red-500 mb-6">
         <svg
           className="w-24 h-24 animate-bounce"
@@ -29,7 +29,6 @@ const ErrorId = () => {
       </p>
       <Link
         to="/game"
-        // className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold shadow-lg hover:bg-blue-700 transition-all duration-300"
         className="btn btn-glow"
       >
         Back All Games

@@ -1,6 +1,4 @@
-// GenreSection.jsx
 import { FaFilm, FaGhost, FaHeart, FaBolt, FaLaugh, FaDragon } from "react-icons/fa";
-
 const genres = [
   { name: "Action", icon: <FaBolt /> },
   { name: "Romance", icon: <FaHeart /> },
@@ -13,13 +11,9 @@ const genres = [
 export default function Genre() {
   return (
     <div className="mb-10 md:mb-20">
-      {/* <h1 className="text-center text-3xl md:text-4xl font-bold text-white py-10">
-        Explore Genres
-      </h1> */}
       <h3 className="mb-5 text-secondary border-l-4 border-l-[#00c6ff] pl-3 font-bold text-xl">
         Genre
       </h3>
-
       <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
         {genres.map((genre, index) => (
           <div

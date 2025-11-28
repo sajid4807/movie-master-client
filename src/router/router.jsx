@@ -13,13 +13,14 @@ import PrivateRoute from "../components/Private/PrivateRoute";
 import UploadMovie from "../pages/UploadMovie/UploadMovie";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import ErrorId from "../components/ErrorId/ErrorId";
+import WatchList from "../components/WatchList/WatchList";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
     hydrateFallbackElement: <Loading />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -36,7 +37,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/allMovies",
-        loader: () => fetch("http://localhost:3000/allMovies"),
+        loader: () =>
+          fetch("https://movie-master-server-eta.vercel.app/allMovies"),
         element: <AllMovies></AllMovies>,
         hydrateFallbackElement: <LoadingCard></LoadingCard>,
       },
@@ -47,42 +49,43 @@ export const router = createBrowserRouter([
             <MyCollection></MyCollection>
           </PrivateRoute>
         ),
-        hydrateFallbackElement:<Loading/>
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "movieDetails/:id",
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/allMovies/${params.id}`),
         element: <MovieDetails />,
-        hydrateFallbackElement:<Loading/>
+        errorElement: <ErrorId />,
+        hydrateFallbackElement: <Loading />,
       },
       {
-        path:'/edit/:id',
-        loader:({params}) => fetch(`http://localhost:3000/allMovies/${params.id}`),
-        element:(
+        path: "/my-watch-list",
+        element: (
           <PrivateRoute>
-            <Edit/>
+            <WatchList />
           </PrivateRoute>
         ),
-        hydrateFallbackElement:<Loading/>
-
       },
       {
-        path:'/upload',
-        element:<PrivateRoute>
-          <UploadMovie></UploadMovie>
-        </PrivateRoute>,
-        hydrateFallbackElement:<Loading/>
+        path: "/edit/:id",
+        element: (
+          <PrivateRoute>
+            <Edit />
+          </PrivateRoute>
+        ),
       },
       {
-    path: "/*",
-    element:<ErrorPage/>
-  },
-      // {
-      //     path:"movieDetails/:id",
-      //     loader:() => fetch(`http://localhost:3000/allMovies`),
-      //     element:<MovieDetails/>
-      // }
+        path: "/upload",
+        element: (
+          <PrivateRoute>
+            <UploadMovie></UploadMovie>
+          </PrivateRoute>
+        ),
+        hydrateFallbackElement: <Loading />,
+      },
+      {
+        path: "/*",
+        element: <ErrorPage />,
+      },
     ],
   },
 ]);

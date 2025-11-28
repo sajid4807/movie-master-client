@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL:'http://localhost:3000'
-})
+  baseURL: "https://movie-master-server-eta.vercel.app",
+});
 const useAxios = () => {
-    return axiosInstance;
+  return axiosInstance;
 };
 
 export default useAxios;

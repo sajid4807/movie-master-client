@@ -2,55 +2,53 @@ import { Link, useLocation, useNavigate } from "react-router";
 import MyLink from "../MyLink/MyLink";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { FaGear } from "react-icons/fa6";
+import { MdOutlineLogout } from "react-icons/md";
 
 const Navbar = () => {
-    const navigate = useNavigate()
-    const location = useLocation()
-    const{user,signOutUser} = useAuth()
-    // console.log(user)
-    const link = <>
-         <li><MyLink to='/'>Home</MyLink></li>
-         <li><MyLink to='/allMovies'>All Movies</MyLink></li>
-         {
-          user ? <li><MyLink to='/myCollection'>My Collection</MyLink></li> :''
-         }
-         <li><MyLink to='/upload'>Upload Movie</MyLink></li>
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user, signOutUser } = useAuth();
+  const link = (
+    <>
+      <li>
+        <MyLink to="/">Home</MyLink>
+      </li>
+      <li>
+        <MyLink to="/allMovies">All Movies</MyLink>
+      </li>
+      {user ? (
+        <li>
+          <MyLink to="/myCollection">My Collection</MyLink>
+        </li>
+      ) : (
+        ""
+      )}
+      <li>
+        <MyLink to="/upload">Upload Movie</MyLink>
+      </li>
     </>
-
-
-  const handleLogout = () =>{
+  );
+  const handleLogout = () => {
     Swal.fire({
-  title: "Are you sure?",
-  // text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, logout it!"
-}).then((result) => {
-  if (result.isConfirmed) {
-    signOutUser()
-    Swal.fire({
-      title: "Logout!",
-      text: "Are you sure for logout.",
-      icon: "success"
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        signOutUser();
+        Swal.fire({
+          title: "Logout!",
+          text: "Are you sure for logout.",
+          icon: "success",
+        });
+      }
     });
-  }
-});
-    // signOutUser()
-    // Swal.fire({
-    //   position: "top-end",
-    //   icon: "success",
-    //   title: "Google SignIn successful 🎉",
-    //   showConfirmButton: false,
-    //   timer: 1500
-    // });
-    navigate(`${location.state ? location.state : '/'}`)
-    // .then(res => {
-    //   )
-    // })
-  }
-
+    navigate(`${location.state ? location.state : "/"}`);
+  };
 
   return (
     <div>
@@ -63,7 +61,7 @@ const Navbar = () => {
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="#6a00f4"
               >
                 {" "}
                 <path
@@ -78,55 +76,69 @@ const Navbar = () => {
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-[#2c3440] rounded-box z-999 mt-3 w-52 p-2 shadow"
             >
-              
               {link}
-             
             </ul>
           </div>
-          <Link to='/' className="text-xl text-white lg:text-2xl font-bold">Movie Master</Link>
+          <Link to="/" className="text-2xl lg:text-2xl font-extrabold bg-[linear-gradient(135deg,#6a00f4,#00c6ff)] bg-clip-text text-transparent">
+            Movie Master
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            
-            {link}
-            
-          </ul>
+          <ul className="menu menu-horizontal px-1">{link}</ul>
         </div>
         <div className="navbar-end">
-         {user ?  (
-          <div className="flex gap-5 items-center z-10">
-            <div className="flex items-center">
-
-
-
-            <div className="dropdown">
-            <div tabIndex={0} role="button" className="">
-                            <img referrerPolicy="no-referrer" src={`${user ? user?.photoURL : ''}`} alt="" className="w-12 h-12 rounded-full"/>
-
+          {user ? (
+            <div className="flex gap-5 items-center z-10">
+              <div className="flex items-center">
+                <div className="dropdown">
+                  <div tabIndex={0} role="button" className="">
+                    <img
+                      referrerPolicy="no-referrer"
+                      src={`${user ? user?.photoURL : ""}`}
+                      alt=""
+                      className="w-12 h-12 rounded-full cursor-pointer"
+                    />
+                  </div>
+                  <ul
+                    tabIndex="-1"
+                    className="menu menu-sm dropdown-content bg-[#2c3440] rounded-box z-99 mt-3 w-52 p-2 shadow"
+                  >
+                    <li>
+                      <MyLink to="/my-watch-list"> My Watch List</MyLink>
+                    </li>
+                    <li>
+                      <button className="smooth-border-underline flex items-center gap-2">
+                        <span>
+                          <FaGear />
+                        </span>{" "}
+                        Setting
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        className="smooth-border-underline flex items-center gap-2"
+                        onClick={handleLogout}
+                      >
+                        <MdOutlineLogout /> Log out
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button onClick={handleLogout} className="btn btn-glow">
+                Logout
+              </button>
             </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-[#2c3440] rounded-box z-99 mt-3 w-52 p-2 shadow"
-            >
-         {/* <li><MyLink to='/allMovie'>My Profile</MyLink></li> */}
-         {/* <li><MyLink to='/allMovies'>All Movies</MyLink></li> */}
-         <li><button className="smooth-border-underline " onClick={handleLogout}>LogOut</button></li>
-            </ul>
-          </div>
-
-              {/* <Link>
-              <img src={`${user ? user?.photoURL : ''}`} alt="" className="w-12 h-12 rounded-full"/>
-              </Link> */}
+          ) : (
+            <div className="space-x-5">
+              <Link to="/register" className="btn btn-glow">
+                Register
+              </Link>
+              <Link to="/login" className="btn btn-glow">
+                Login
+              </Link>
             </div>
-            <button onClick={handleLogout} className="btn btn-glow">
-              Logout
-              </button>              
-         </div>) : (
-          <div className="space-x-5">
-            <Link to='/register' className="btn btn-glow">Register</Link>
-            <Link to='/login' className="btn btn-glow">Login</Link>
-          </div>
-         ) }
+          )}
         </div>
       </div>
     </div>

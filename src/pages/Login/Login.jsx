@@ -5,90 +5,86 @@ import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxios from "../../hooks/useAxios";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const Login = () => {
-    const {signInUser,setUser,signInWithGoogle} = useAuth()
-    const axiosInstance = useAxios()
-    const navigate = useNavigate()
-    const location = useLocation()
-    const [error,setError] =useState('')
-    const [show,setShow]= useState(false)
-
-
-    const handleLogin = (e)=> {
-        e.preventDefault()
-        const form = e.target
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log({email,password})
-
-
-        signInUser(email, password)
+  const { signInUser, setUser, signInWithGoogle } = useAuth();
+  const axiosInstance = useAxios();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [error, setError] = useState("");
+  const [show, setShow] = useState(false);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log({ email, password });
+    signInUser(email, password)
       .then((res) => {
         Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Login successful 🎉",
-              showConfirmButton: false,
-              timer: 1500
-            });
+          position: "top-end",
+          icon: "success",
+          title: "Login successful 🎉",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         setUser(res.user);
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
-             Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "❌ Login failed. Please try again.",
-            });
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "❌ Login failed. Please try again.",
+        });
         setError(error.message);
       });
-        
-    }
-
-
-
-    const handleGoogleSignin = () => {
-        signInWithGoogle()
-              .then(res => {
-                // console.log(res.user)
-                 const newUser = {
+  };
+  const handleGoogleSignin = () => {
+    signInWithGoogle()
+      .then((res) => {
+        const newUser = {
           name: res.user.displayName,
           email: res.user.email,
           image: res.user.photoURL,
         };
-                Swal.fire({
+        Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Google SignIn successful 🎉",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
 
-        axiosInstance.post('/user',newUser)
-        .then(data => {
-          console.log('after saving data',data)
-        })
-        navigate(`${location.state? location.state: '/'}`)
-              })
-              .catch(error => {
-                Swal.fire({
+        axiosInstance.post("/user", newUser).then((data) => {
+          console.log("after saving data", data);
+        });
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        Swal.fire({
           icon: "error",
           title: "Oops...",
           text: "Account not found. Try again or sign up 🚫",
         });
-                setError(error.message)
-              })
-
-    }
-
-    return (
-        <div className="flex items-center h-screen">
+        setError(error.message);
+      });
+  };
+  return (
+    <div className="flex items-center py-10 md:py-20">
+      <div className="h-96 w-1/2 hidden lg:block">
+        <DotLottieReact
+          src="https://lottie.host/fef78230-66da-4b19-ac51-ff389d4ff615/xg3i6LKZNH.lottie"
+          loop
+          autoplay
+        />
+      </div>
       <div className="card bg-base-100 p-5 mx-auto w-[350px] md:w-[450px] shrink-0 shadow-2xl">
-      <h1 className="text-5xl font-bold mb-2 text-center">Login</h1>
+        <h1 className="text-5xl font-bold mb-2 text-center">Login</h1>
 
-    <div className="">
-       <form onSubmit={handleLogin} className="space-y-4">
+        <div className="">
+          <form onSubmit={handleLogin} className="space-y-4">
             {/* email */}
             <div>
               <label className="block text-sm font-medium mb-1">Email</label>
@@ -117,13 +113,12 @@ const Login = () => {
             </div>
             {error && <p>{error}</p>}
             <p className="text-sm font-medium">Forgot Password</p>
-            <button
-              type="submit"
-              className="btn btn-glow w-full"
-            >
+            <button type="submit" className="btn btn-glow w-full">
               Login
             </button>
-            <p className="flex justify-center font-bold">------------------------------------</p>
+            <p className="flex justify-center font-bold">
+              ------------------------------------
+            </p>
             {/* Google Signin */}
             <button
               type="button"
@@ -134,20 +129,20 @@ const Login = () => {
             </button>
             <div className="text-center mt-3">
               <p className="text-sm text-primary">
-                              Don’t have an account?{''} 
+                Don’t have an account?{""}
                 <Link
                   to="/register"
                   className="text-base-content hover:text-primary font-medium underline"
-                > 
-                   Register
+                >
+                  Register
                 </Link>
               </p>
             </div>
           </form>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    );
+  );
 };
 
 export default Login;

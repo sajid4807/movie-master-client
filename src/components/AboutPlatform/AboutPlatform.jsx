@@ -1,4 +1,3 @@
-// AboutPlatform.jsx
 import { motion } from "framer-motion";
 import { FaPlayCircle, FaUsers, FaStar } from "react-icons/fa";
 
@@ -8,12 +7,9 @@ export default function AboutPlatform() {
       className="pb-10 md:pb-20"
       style={{ backgroundColor: "#14181c" }}
     >
-      {/* Heading Animation */}
       <h3 className="mb-5 text-secondary border-l-4 border-l-[#00c6ff] pl-3 font-bold text-xl">
         About Platform
       </h3>
-
-      {/* Cards Container Animation */}
       <motion.div
         className=" mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
         initial="hidden"
@@ -25,7 +21,6 @@ export default function AboutPlatform() {
           visible: {},
         }}
       >
-        {/* Card Variants */}
         {[
           {
             title: "Stream Instantly",
@@ -76,28 +71,6 @@ export default function AboutPlatform() {
           </motion.div>
         ))}
       </motion.div>
-
-      {/* Glass Style */}
-      <style>
-        {`
-          .glass-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            border-radius: 18px;
-            padding: 28px 22px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            text-align: center;
-            color: white;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-          }
-          .glass-card:hover {
-            background: rgba(255, 255, 255, 0.14);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-6px);
-          }
-        `}
-      </style>
     </div>
   );
 }
