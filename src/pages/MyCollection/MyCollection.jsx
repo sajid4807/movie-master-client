@@ -51,7 +51,7 @@ const MyCollection = () => {
       <h2 className="text-xl md:text-3xl font-bold text-center mb-4 md:mb-8">
         My Collection
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 space-y-4">
+      <div className="grid grid-rows-1 md:grid-cols-4 gap-3 space-y-4">
         {movies && movies.length ? (
           movies.map((movie) => (
             <div key={movie._id} className="card glow-pulse h-[304px]">
@@ -70,15 +70,15 @@ const MyCollection = () => {
                   {movie.title}
                 </h2>
                 <div className="flex justify-between">
-                  <p>Genre: {movie.genre}</p>
-                  <p>Release: {movie.releaseYear}</p>
+                  <p>{movie.genre}</p>
+                  <p>{movie.releaseYear}</p>
                 </div>
               </div>
-              <div className="flex gap-5 px-2 py-4">
-                <Link to={`/edit/${movie._id}`} state={location.pathname}  className="btn btn-glow">
+              <div className="flex items-center gap-4 px-2 py-4">
+                <Link to={`/edit/${movie._id}`} state={location.pathname}className="btn btn-glow ">
                 Edit
               </Link>
-              <button onClick={() =>handleMovieDelete(movie._id)} className="btn btn-glow">
+              <button onClick={() =>handleMovieDelete(movie._id)} className="btn btn-glow ">
                 Delete
               </button>
               </div>
@@ -86,7 +86,7 @@ const MyCollection = () => {
           ))
         ) : (
           <div className="col-span-full flex flex-col items-center justify-center py-20">
-            <h2 className="text-3xl font-bold text-primary mb-2 animate-bounce">
+            <h2 className="text-xl md:text-3xl font-bold text-primary mb-2 animate-bounce">
               No Movies in Your Collection
             </h2>
           </div>

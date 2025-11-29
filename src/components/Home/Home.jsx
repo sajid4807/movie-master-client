@@ -21,9 +21,9 @@ const Home = () => {
       <Suspense fallback={<Loading></Loading>}>
         <Banner moviesPromise={moviesPromise}></Banner>
       </Suspense>
-      <Suspense fallback={<LoadingCard/>}>
-                <StatisticsSection totalMovies={totalMovies}></StatisticsSection>
-            </Suspense>
+      <Suspense fallback={<LoadingCard />}>
+        <StatisticsSection totalMovies={totalMovies}></StatisticsSection>
+      </Suspense>
       <Suspense fallback={<LoadingCard />}>
         <TopRatedMovies totalMovies={totalMovies}></TopRatedMovies>
       </Suspense>

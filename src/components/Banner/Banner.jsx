@@ -15,7 +15,7 @@ const Banner = ({moviesPromise}) => {
       pagination={{ clickable: true }}
       autoplay={{ delay: 3000 }}
       loop={true}
-      className="w-full h-[300px] md:h-[600px] rounded-xl overflow-hidden"
+      className="w-full h-full md:h-[600px] rounded-xl overflow-hidden"
     >
       {movies.map((movie) => (
         <SwiperSlide key={movie._id}>

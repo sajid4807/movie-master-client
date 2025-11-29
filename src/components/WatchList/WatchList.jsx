@@ -23,10 +23,10 @@ const WatchList = () => {
       <h2 className="text-xl md:text-3xl font-bold text-center mb-4 md:mb-8">
         My Watch List
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 space-y-4">
+      <div className="grid grid-rows-1 md:grid-cols-4 gap-3">
         {watchedList && watchedList.length ? (
           watchedList.map((watch) => (
-            <div key={watch._id} className="card glow-pulse h-[304px]">
+            <div key={watch._id} className="card glow-pulse">
               <figure className="relative">
                 <img
                   src={watch.posterUrl}
@@ -38,19 +38,19 @@ const WatchList = () => {
                 </p>
               </figure>
               <div className="p-2">
-                <h2 className="font-medium text-secondary hover:text-[#00c6ff]">
+                <h2 className="font-medium text-secondary hover:text-[#00c6ff] truncate md:whitespace-normal md:truncate-none">
                   {watch.title}
                 </h2>
                 <div className="flex justify-between">
-                  <p>Genre: {watch.genre}</p>
-                  <p>Release: {watch.releaseYear}</p>
+                  <p>{watch.genre}</p>
+                  <p>{watch.releaseYear}</p>
                 </div>
               </div>
             </div>
           ))
         ) : (
           <div className="col-span-full flex flex-col items-center justify-center py-20">
-            <h2 className="text-3xl font-bold text-primary mb-2 animate-bounce">
+            <h2 className="text-xl md:text-3xl font-bold text-primary mb-2 animate-bounce">
               No Movies in Your Watch List
             </h2>
           </div>

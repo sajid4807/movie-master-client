@@ -1,16 +1,7 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Title => Movie Master
+## Live Link => https://movie-master-216f7.web.app/
+## Responsive & Accessible UI => Built with Tailwind CSS and DaisyUI for a mobile-first, accessible design.
+## My Collection => Save favorite movies and view a personal collection page for quick access.
+## Add/Edit/Delete Movies => Authenticated users can add new movies, update existing entries, or remove movies from the collection.
+## Detailed Movie Pages => View all movie details including poster, synopsis, cast, director, runtime, and rating.
+## User Roles & Access => Support for multiple roles (admin, contributor, visitor) with role-based UI and permissions.

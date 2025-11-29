@@ -1,10 +1,18 @@
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router";
 
 const UploadMovie = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const navigate = useNavigate();
+
+
+  const formatDate = (date) => {
+  const options = { day: "2-digit", month: "short", year: "numeric" };
+  return new Date(date).toLocaleDateString("en-GB", options);
+};
   const handleUpload = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,6 +28,7 @@ const UploadMovie = () => {
     const duration = parseInt(form.duration.value);
     const rating = parseFloat(form.rating.value);
     const addedBy = user.email;
+    const addedAt = formatDate(new Date()); 
     const newMovie = {
       title,
       genre,
@@ -33,8 +42,8 @@ const UploadMovie = () => {
       rating,
       releaseYear,
       addedBy,
+      addedAt
     };
-    console.log(newMovie);
     axiosSecure
       .post(`/allMovies/add`, newMovie)
       .then(() => {
@@ -45,6 +54,8 @@ const UploadMovie = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+          navigate(location.state ? location.state : "/allMovies");
+
       })
       .catch((error) => {
         console.error(error);

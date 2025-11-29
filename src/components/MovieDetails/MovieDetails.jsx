@@ -74,28 +74,87 @@ const MovieDetails = () => {
         });
       });
   };
-  const handleMovieDelete = () => {
+
+
+  const handleMovieDelete =()=> {
+
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        authInfo.delete(`/allMovies/${_id}`).then(() => {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your movie has been deleted.",
-            icon: "success",
-          });
-          navigate(`${location.state ? location.state : "/allMovies"}`);
-        });
-      }
+  title: "Are you sure?",
+  text: "You won't be able to revert movie!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    axiosSecure.delete(`/allMovies/${_id}`)
+    .then(() => {
+Swal.fire({
+      title: "Deleted!",
+      text: "Your movie has been deleted.",
+      icon: "success"
     });
-  };
+          navigate(location.state ? location.state : "/allMovies");
+    })
+    .catch((error) => {
+            console.error(error);
+            Swal.fire({
+              icon: "error",
+              title: "Forbidden ❌",
+              text: 'You are not allowed to delete this movie'
+            });
+          });
+  }
+  
+});
+
+
+  }
+// const handleMovieDelete = () => {
+
+
+
+
+//   Swal.fire({
+//     title: "Are you sure?",
+//     text: "You won't be able to revert this!",
+//     icon: "warning",
+//     showCancelButton: true,
+//     confirmButtonColor: "#3085d6",
+//     cancelButtonColor: "#d33",
+//     confirmButtonText: "Yes, delete it!",
+//   }).then((result) => {
+//     if (result.isConfirmed) {
+//       axiosSecure
+// .delete(`/allMovies/${_id}`)
+//         .then((res) => {
+//           if (!res.data.success) {
+//             return Swal.fire({
+//               title: "Not Deleted!",
+//               text: "You cannot delete this movie.",
+//               icon: "error",
+//             });
+//           }
+//           // Swal.fire({
+//           //   title: "Deleted!",
+//           //   text: "Your movie has been deleted.",
+//           //   icon: "success",
+//           // });
+
+//         )
+//         .catch((err) => {
+//           Swal.fire({
+//             title: "Forbidden!",
+//             text:'You are not allowed to delete this movie',
+//             icon: "error",
+//           });
+//           console.error("Delete error:", err);
+//         });
+//     }
+//   });
+// };
+
 
   return (
     <div className="body-width px-4 md:px-0 py-$10 md:py-20 text-secondary">

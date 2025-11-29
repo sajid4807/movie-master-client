@@ -4,7 +4,7 @@ import Movies from "../../components/Movies/Movies";
 const AllMovies = () => {
   const movies = useLoaderData();
   return (
-    <div className="text-primary body-width py-10 md:py-16 px-4 md:px-0">
+    <div className="text-primary body-width py-8 md:py-16 px-4 md:px-0">
       <h2 className="text-xl md:text-3xl font-bold text-center mb-4 md:mb-8">
         All Movies
       </h2>
