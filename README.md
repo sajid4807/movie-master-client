@@ -31,7 +31,7 @@ Movie Master is a responsive movie management web application that allows users 
 
 ## 📦 Dependencies
 - react
-- react-router
+- react-router-dom
 - firebase
 - axios
 
