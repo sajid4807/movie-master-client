@@ -4,10 +4,10 @@
 Movie Master is a responsive movie management web application that allows users to explore, save, and manage movies.
 
 ## 🌐 Live Demo
-🔗 movie-master-216f7.web.app
+🔗 https://movie-master-216f7.web.app/allMovies
 
 ## 🖼️ Screenshot
-<img src="https://ibb.co.com/MkpvxT0r" alt="Movie Master Screenshot" />
+<img src="https://i.ibb.co.com/jkGNPKXm/movies1.png" alt="Movie Master Screenshot" />
 
 ## ✨ Core Features
 - User authentication with Firebase
