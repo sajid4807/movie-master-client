@@ -4,7 +4,7 @@
 Movie Master is a responsive movie management web application that allows users to explore, save, and manage movies.
 
 ## 🌐 Live Demo
-🔗 https://your-live-link.vercel.app
+🔗 movie-master-216f7.web.app/
 
 ## 🖼️ Screenshot
 <img src="https://i.ibb.co/YOUR-SCREENSHOT.png" alt="Movie Master Screenshot" />
