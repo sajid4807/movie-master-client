@@ -14,6 +14,18 @@ import UploadMovie from "../pages/UploadMovie/UploadMovie";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import ErrorId from "../components/ErrorId/ErrorId";
 import WatchList from "../components/WatchList/WatchList";
+// import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import DashboardLayout from "../layout/DashboardLayout";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import Profile from "../pages/Dashboard/Profile/Profile";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
+import Terms from "../components/Terms/Terms";
+import ReportIssue from "../components/ReportIssue/ReportIssue";
+import PrivacyPolicy from "../components/PrivacyPolicy/PrivacyPolicy";
+import CommunityRules from "../components/CommunityRules/CommunityRules";
+import HelpCenter from "../components/HelpCenter/HelpCenter";
+import FAQ from "../components/FAQ/FAQ";
 
 export const router = createBrowserRouter([
   {
@@ -43,44 +55,42 @@ export const router = createBrowserRouter([
         hydrateFallbackElement: <LoadingCard></LoadingCard>,
       },
       {
-        path: "/myCollection",
-        element: (
-          <PrivateRoute>
-            <MyCollection></MyCollection>
-          </PrivateRoute>
-        ),
-        hydrateFallbackElement: <Loading />,
-      },
-      {
         path: "movieDetails/:id",
         element: <MovieDetails />,
         errorElement: <ErrorId />,
         hydrateFallbackElement: <Loading />,
       },
       {
-        path: "/my-watch-list",
-        element: (
-          <PrivateRoute>
-            <WatchList />
-          </PrivateRoute>
-        ),
+        path:'about',
+        element:<About/>
       },
       {
-        path: "/edit/:id",
-        element: (
-          <PrivateRoute>
-            <Edit />
-          </PrivateRoute>
-        ),
+        path:'contact',
+        element:<Contact></Contact>
       },
       {
-        path: "/upload",
-        element: (
-          <PrivateRoute>
-            <UploadMovie></UploadMovie>
-          </PrivateRoute>
-        ),
-        hydrateFallbackElement: <Loading />,
+        path:'term',
+        element:<Terms/>
+      },
+      {
+        path:'report-issue',
+        element:<ReportIssue/>
+      },
+      {
+        path:'community-rules',
+        element:<CommunityRules/>
+      },
+      {
+        path:'help-center',
+        element:<HelpCenter/>
+      },
+      {
+        path:'faq',
+        element:<FAQ/>
+      },
+      {
+        path:'privacy-policy',
+        element:<PrivacyPolicy/>
       },
       {
         path: "/*",
@@ -88,4 +98,37 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path:'/dashboard',
+    element: <PrivateRoute><DashboardLayout/></PrivateRoute>,
+    children:[
+      {
+        path:'dashboard-home',
+        element:<DashboardHome/>
+      },
+       {
+        path: "myCollection",
+        element: <MyCollection></MyCollection>,
+        hydrateFallbackElement: <Loading />,
+      },
+      {
+        path: "edit/:id",
+        element: <Edit />
+      },
+      {
+        path: "upload",
+        element:  <UploadMovie></UploadMovie>,
+        hydrateFallbackElement: <Loading />,
+      },
+       {
+        path: "my-watch-list",
+        element:<WatchList />
+      },
+      {
+        path:"profile",
+        element:<Profile/>
+      }
+    ]
+    
+  }
 ]);

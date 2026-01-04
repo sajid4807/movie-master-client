@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Grid3x3, Sparkles, Zap } from "lucide-react";
 import { FaPlayCircle, FaUsers, FaStar } from "react-icons/fa";
 
 export default function AboutPlatform() {
@@ -7,9 +8,18 @@ export default function AboutPlatform() {
       className="pb-10 md:pb-20"
       style={{ backgroundColor: "#14181c" }}
     >
-      <h3 className="mb-5 text-secondary border-l-4 border-l-[#00c6ff] pl-3 font-bold text-xl">
-        About Platform
-      </h3>
+      <div className="relative mb-10 md:mb-12">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full backdrop-blur-sm border border-cyan-500/30">
+            <Zap className="w-4 h-4 text-cyan-400 fill-cyan-400" />
+            <Sparkles className="w-4 h-4 text-blue-400" />
+          </div>
+          <div className="flex-1 h-1 bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-transparent rounded-full" />
+        </div>
+        <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+          About Platform
+        </h3>
+      </div>
       <motion.div
         className=" mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
         initial="hidden"
@@ -71,6 +81,8 @@ export default function AboutPlatform() {
           </motion.div>
         ))}
       </motion.div>
+
+      <div className="mt-10 md:mt-12 h-1 bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent rounded-full" />
     </div>
   );
 }

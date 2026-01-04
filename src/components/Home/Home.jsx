@@ -7,6 +7,7 @@ import LatestMovies from "../LatestMovies/LatestMovies";
 import AboutPlatform from "../AboutPlatform/AboutPlatform";
 import LoadingCard from "../Loading/LoadingCard";
 import Genre from "../Genre/Genre";
+import Newsletter from "../Newsletter/Newsletter";
 const moviesPromise = fetch(
   "https://movie-master-server-eta.vercel.app/movies"
 ).then((res) => res.json());
@@ -32,6 +33,7 @@ const Home = () => {
       </Suspense>
       <Genre></Genre>
       <AboutPlatform></AboutPlatform>
+      <Newsletter/>
     </div>
   );
 };

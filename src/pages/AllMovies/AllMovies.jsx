@@ -8,7 +8,7 @@ const AllMovies = () => {
       <h2 className="text-xl md:text-3xl font-bold text-center mb-4 md:mb-8">
         All Movies
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 space-y-4">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-3 space-y-4">
         {movies.map((movie) => (
           <Movies key={movie._id} movie={movie}></Movies>
         ))}
