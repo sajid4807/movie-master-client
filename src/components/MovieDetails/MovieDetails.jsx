@@ -56,7 +56,6 @@ const MovieDetails = () => {
       ...movie,
       watch_by: user.email,
     };
-    console.log(newMovie);
     authInfo
       .post("/watch-list", newMovie)
       .then(() => {
@@ -97,8 +96,7 @@ const MovieDetails = () => {
             });
             navigate(location.state ? location.state : "/allMovies");
           })
-          .catch((error) => {
-            console.error(error);
+          .catch(() => {
             Swal.fire({
               icon: "error",
               title: "Forbidden ❌",

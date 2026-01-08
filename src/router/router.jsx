@@ -6,15 +6,12 @@ import Login from "../pages/Login/Login";
 import AllMovies from "../pages/AllMovies/AllMovies";
 import MyCollection from "../pages/MyCollection/MyCollection";
 import Loading from "../components/Loading/Loading";
-import LoadingCard from "../components/Loading/LoadingCard";
 import MovieDetails from "../components/MovieDetails/MovieDetails";
-import Edit from "../components/Edit/Edit";
 import PrivateRoute from "../components/Private/PrivateRoute";
 import UploadMovie from "../pages/UploadMovie/UploadMovie";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import ErrorId from "../components/ErrorId/ErrorId";
 import WatchList from "../components/WatchList/WatchList";
-// import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import DashboardLayout from "../layout/DashboardLayout";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 import Profile from "../pages/Dashboard/Profile/Profile";
@@ -26,6 +23,7 @@ import PrivacyPolicy from "../components/PrivacyPolicy/PrivacyPolicy";
 import CommunityRules from "../components/CommunityRules/CommunityRules";
 import HelpCenter from "../components/HelpCenter/HelpCenter";
 import FAQ from "../components/FAQ/FAQ";
+import EditMovie from "../components/EditMovie/EditMovie";
 
 export const router = createBrowserRouter([
   {
@@ -49,10 +47,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/allMovies",
-        loader: () =>
-          fetch("https://movie-master-server-eta.vercel.app/allMovies"),
         element: <AllMovies></AllMovies>,
-        hydrateFallbackElement: <LoadingCard></LoadingCard>,
       },
       {
         path: "movieDetails/:id",
@@ -113,7 +108,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "edit/:id",
-        element: <Edit />
+        element: <EditMovie/>
       },
       {
         path: "upload",

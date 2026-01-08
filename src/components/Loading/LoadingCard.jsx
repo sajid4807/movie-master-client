@@ -2,7 +2,7 @@ import { Film, Sparkles } from "lucide-react";
 
 const LoadingCard = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6 relative overflow-hidden">
+    <div className="flex flex-col items-center justify-center min-h-screen space-y-6 relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-1/4 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl animate-pulse" />

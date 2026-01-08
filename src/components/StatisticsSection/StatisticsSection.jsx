@@ -1,38 +1,52 @@
-import { use, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { Users, Film, TrendingUp, Sparkles } from "lucide-react";
+import { Users, Film, TrendingUp, Sparkles, Zap } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
+import Loading from "../Loading/Loading";
 
-const StatisticsSection = ({ totalMovies }) => {
-  const movies = use(totalMovies);
+const StatisticsSection = () => {
   const axiosInstance = useAxios();
-  const [users, setUsers] = useState([]);
   const controls = useAnimation();
 
-  useEffect(() => {
-    axiosInstance('/user')
-      .then((data) => {
-        setUsers(data.data);
-        controls.start("visible");
-      });
-  }, [axiosInstance, controls]);
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: "easeOut" },
+  const {
+    data,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["stats"],
+    queryFn: async () => {
+      const res = await axiosInstance.get("/stats");
+      return res.data;
     },
-  };
+  });
+
+  useEffect(() => {
+    if (!isLoading) {
+      controls.start("visible");
+    }
+  }, [isLoading, controls]);
+
+  if (isLoading) return <Loading />;
+  
+  if (isError)
+    return (
+      <div className="text-center py-10 text-red-500">
+        Failed to load statistics
+      </div>
+    );
+
+  const { totalUsers = 0, totalMovies = 0 } = data || {};
 
   return (
     <div className="pb-10 md:pb-20 relative overflow-hidden">
+      {/* Background Decorative Elements */}
+
       {/* Section Header */}
-      <div className="relative mb-8 md:mb-12">
+      <div className="relative mb-10 md:mb-12">
         <div className="flex items-center gap-3 mb-2">
-          <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full backdrop-blur-sm border border-white/10">
-            <TrendingUp className="w-4 h-4 text-cyan-400" />
+          <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full backdrop-blur-sm border border-cyan-500/30">
+            <Zap className="w-4 h-4 text-cyan-400 fill-cyan-400" />
             <Sparkles className="w-4 h-4 text-blue-400" />
           </div>
           <div className="flex-1 h-1 bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-transparent rounded-full" />
@@ -43,16 +57,19 @@ const StatisticsSection = ({ totalMovies }) => {
       </div>
 
       {/* Stats Cards Container */}
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto px-4">
+        
         {/* Users Card */}
         <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           className="relative group"
-          variants={cardVariants}
-          initial="hidden"
-          animate={controls}
         >
+          
+          
           {/* Card Content */}
-          <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-8 border border-cyan-500/20 overflow-hidden">
+          <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-8 border border-cyan-500/20 overflow-hidden backdrop-blur-sm shadow-2xl">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5">
               <div className="absolute inset-0" style={{
@@ -65,7 +82,7 @@ const StatisticsSection = ({ totalMovies }) => {
             <div className="relative mb-4 inline-flex">
               <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-md" />
               <div className="relative p-3 bg-gradient-to-br from-cyan-500/30 to-blue-500/30 rounded-full border border-cyan-500/40">
-                <Users className="w-8 h-8 text-cyan-400" />
+                <Users className="w-10 h-10 text-cyan-400" />
               </div>
             </div>
 
@@ -73,10 +90,10 @@ const StatisticsSection = ({ totalMovies }) => {
             <div className="relative">
               <motion.h2
                 className="text-6xl md:text-7xl font-extrabold bg-gradient-to-br from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent mb-2"
-                animate={{ scale: [1, 1.1, 1] }}
+                animate={{ scale: [1, 1.05, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
               >
-                {users.length}
+                {totalUsers}
               </motion.h2>
               
               {/* Animated Counter Line */}
@@ -101,13 +118,14 @@ const StatisticsSection = ({ totalMovies }) => {
 
         {/* Movies Card */}
         <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           className="relative group"
-          variants={cardVariants}
-          initial="hidden"
-          animate={controls}
         >
+          
           {/* Card Content */}
-          <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-8 border border-blue-500/20 overflow-hidden">
+          <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-8 border border-blue-500/20 overflow-hidden backdrop-blur-sm shadow-2xl">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5">
               <div className="absolute inset-0" style={{
@@ -120,19 +138,19 @@ const StatisticsSection = ({ totalMovies }) => {
             <div className="relative mb-4 inline-flex">
               <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-md" />
               <div className="relative p-3 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-full border border-blue-500/40">
-                <Film className="w-8 h-8 text-blue-400" />
+                <Film className="w-10 h-10 text-blue-400" />
               </div>
             </div>
 
             {/* Number with Animation */}
             <div className="relative">
-              <motion.h3
+              <motion.h2
                 className="text-6xl md:text-7xl font-extrabold bg-gradient-to-br from-blue-400 via-blue-300 to-purple-400 bg-clip-text text-transparent mb-2"
-                animate={{ scale: [1, 1.1, 1] }}
+                animate={{ scale: [1, 1.05, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
               >
-                {movies.length}
-              </motion.h3>
+                {totalMovies}
+              </motion.h2>
               
               {/* Animated Counter Line */}
               <motion.div 
@@ -157,7 +175,7 @@ const StatisticsSection = ({ totalMovies }) => {
 
       {/* Bottom Decorative Line */}
       <motion.div 
-        className="mt-12 h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent rounded-full"
+        className="mt-12 h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent rounded-full max-w-7xl mx-auto"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, delay: 1 }}

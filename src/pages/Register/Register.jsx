@@ -58,12 +58,11 @@ const Register = () => {
 
         navigate(location.state || "/");
       })
-      .catch((err) => {
+      .catch(() => {
         Swal.fire({
           icon: "error",
           title: "Registration failed",
         });
-        console.error(err.message);
       });
   };
 
@@ -71,7 +70,7 @@ const Register = () => {
     signInWithGoogle()
       .then((res) => {
         axiosInstance.post("/user", {
-          name: res.user.displayName,
+          displayName: res.user.displayName,
           email: res.user.email,
           photoURL: res.user.photoURL,
         });

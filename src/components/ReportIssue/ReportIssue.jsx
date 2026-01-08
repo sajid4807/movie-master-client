@@ -15,7 +15,6 @@ export default function ReportIssue() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Report Submitted:", formData);
     alert("Your issue has been submitted. Thank you!");
     setFormData({ name: "", email: "", issueType: "", description: "" });
   };

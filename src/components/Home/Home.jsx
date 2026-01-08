@@ -12,9 +12,6 @@ const moviesPromise = fetch(
   "https://movie-master-server-eta.vercel.app/movies"
 ).then((res) => res.json());
 
-const totalMovies = fetch(
-  "https://movie-master-server-eta.vercel.app/allMovies"
-).then((res) => res.json());
 
 const Home = () => {
   return (
@@ -22,15 +19,9 @@ const Home = () => {
       <Suspense fallback={<Loading></Loading>}>
         <Banner moviesPromise={moviesPromise}></Banner>
       </Suspense>
-      <Suspense fallback={<LoadingCard />}>
-        <StatisticsSection totalMovies={totalMovies}></StatisticsSection>
-      </Suspense>
-      <Suspense fallback={<LoadingCard />}>
-        <TopRatedMovies totalMovies={totalMovies}></TopRatedMovies>
-      </Suspense>
-      <Suspense fallback={<LoadingCard />}>
-        <LatestMovies totalMovies={totalMovies}></LatestMovies>
-      </Suspense>
+        <StatisticsSection></StatisticsSection>
+        <TopRatedMovies></TopRatedMovies>
+        <LatestMovies></LatestMovies>
       <Genre></Genre>
       <AboutPlatform></AboutPlatform>
       <Newsletter/>

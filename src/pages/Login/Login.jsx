@@ -22,7 +22,6 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log({ email, password });
     signInUser(email, password)
       .then((res) => {
         Swal.fire({
@@ -49,7 +48,7 @@ const Login = () => {
     signInWithGoogle()
       .then((res) => {
         const newUser = {
-          name: res.user.displayName,
+          displayName: res.user.displayName,
           email: res.user.email,
           photoURL: res.user.photoURL,
         };
@@ -61,8 +60,7 @@ const Login = () => {
           timer: 1500,
         });
 
-        axiosInstance.post("/user", newUser).then((data) => {
-          console.log("after saving data", data);
+        axiosInstance.post("/user", newUser).then(() => {
         });
         navigate(`${location.state ? location.state : "/"}`);
       })
