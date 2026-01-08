@@ -3,13 +3,13 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router";
-import useAxios from "../../hooks/useAxios";
+// import useAxios from "../../hooks/useAxios";
 import Swal from "sweetalert2";
 import { Film, Edit, Trash2, Sparkles, BookMarked } from "lucide-react";
 
 const MyCollection = () => {
   const axiosSecure = useAxiosSecure();
-  const axiosInstance = useAxios();
+  // const axiosInstance = useAxios();
   const { user } = useAuth();
   const [movies, setMovies] = useState([]);
 
@@ -26,28 +26,39 @@ const MyCollection = () => {
       });
   }, [user, axiosSecure]);
 
-  const handleMovieDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosInstance.delete(`/allMovies/${id}`).then(() => {
+const handleMovieDelete = (_id) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert movie!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axiosSecure
+        .delete(`/allMovies/${_id}`)
+        .then(() => {
           Swal.fire({
             title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
+            text: "Your movie has been deleted.",
+            icon: "success"
           });
+
           window.location.reload();
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "Forbidden ❌",
+            text: "You are not allowed to delete this movie"
+          });
         });
-      }
-    });
-  };
+    }
+  });
+};
+
 
   return (
     <div className="body-width py-10 md:py-16 px-4 md:px-0 overflow-hidden">
@@ -131,7 +142,7 @@ const MyCollection = () => {
                   <div className="flex items-center gap-2">
                     {/* Edit Button */}
                     <Link
-                      to={`/edit/${movie._id}`}
+                      to={`/dashboard/edit/${movie._id}`}
                       state={location.pathname}
                       className="relative flex-1 group/btn overflow-hidden"
                     >

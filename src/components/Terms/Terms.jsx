@@ -1,7 +1,7 @@
 export default function Terms() {
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-black py-8 md:py-16 text-white">
-      <div className="max-w-4xl mx-auto bg-slate-800 rounded-2xl p-8 shadow-lg">
+    <div className="px-4 md:px-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black py-8 md:py-16 text-white">
+      <div className="max-w-4xl mx-auto bg-slate-800 rounded-2xl p-4 md:p-8 shadow-lg">
         <h1 className="text-3xl md:text-4xl font-bold mb-6 text-cyan-400">
           Terms & Conditions
         </h1>

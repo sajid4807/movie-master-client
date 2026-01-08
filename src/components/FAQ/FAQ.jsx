@@ -21,14 +21,14 @@ export default function FAQ() {
       answer: "Go to the 'Report Issue' page via the Support section and fill out the form. Our team will respond promptly.",
     },
     {
-      question: "How do I update my profile info?",
+      question: "How do I update my profile info?px-4 md:px-0",
       answer: "In your profile, click 'Edit Profile' and update your personal information like name, email, and profile picture.",
     },
   ];
 
   return (
-    <div className=" bg-gradient-to-br from-slate-900 via-slate-950 to-black py-8 md:py-16 text-white">
-      <div className="max-w-5xl mx-auto bg-slate-800 rounded-2xl p-8 shadow-lg">
+    <div className="px-4 md:px-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black py-8 md:py-16 text-white">
+      <div className="max-w-5xl mx-auto bg-slate-800 rounded-2xl p-4 md:p-8 shadow-lg">
         <h1 className="text-3xl font-bold text-cyan-400 mb-6 text-center">Frequently Asked Questions</h1>
         <p className="text-gray-300 mb-8 text-center">
           Here are answers to the most common questions about using <span className="text-cyan-400 font-semibold">Movie Master</span>.

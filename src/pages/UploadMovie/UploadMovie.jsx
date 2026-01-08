@@ -87,6 +87,14 @@ const UploadMovie = () => {
   return (
     <div className="flex items-center justify-center py-10 md:py-20 px-4 relative overflow-hidden">
 
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(90deg, currentColor 1px, transparent 1px), linear-gradient(currentColor 1px, transparent 1px)',
+          backgroundSize: '50px 50px',
+          color: '#00c6ff'
+        }} />
+      </div>
+
       {/* Form Card Container */}
       <div className="relative w-full max-w-2xl">
         {/* Outer Glow */}

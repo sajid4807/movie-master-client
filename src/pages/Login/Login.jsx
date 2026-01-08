@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxios from "../../hooks/useAxios";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { LogIn, Mail, Lock, Sparkles, Chrome, User, Key } from "lucide-react";
+import { LogIn, Mail, Lock, Sparkles, Chrome, User } from "lucide-react";
 
 const Login = () => {
   const { signInUser, setUser, signInWithGoogle } = useAuth();
@@ -189,13 +189,6 @@ const Login = () => {
                   </div>
                 )}
 
-                {/* Forgot Password */}
-                <div className="text-right">
-                  <button type="button" className="text-sm text-cyan-400 hover:text-cyan-300 font-medium transition-colors flex items-center gap-1 ml-auto">
-                    <Key className="w-3.5 h-3.5" />
-                    Forgot Password?
-                  </button>
-                </div>
 
                 {/* Login Button */}
                 <button 
