@@ -68,24 +68,24 @@ const AllMovies = () => {
 
           {/* Search Section */}
           <div className="relative mb-8">
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex sm:flex-row gap-2">
               <div className="flex-1 relative">
                 <input
                   type="search"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Search by title, location, or description..."
-                  className="w-full px-6 py-4 bg-slate-900/50 border-2 border-slate-700 rounded-2xl focus:outline-none focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/20 placeholder-slate-500 text-white transition-all backdrop-blur-sm"
+                  className="w-full px-6 py-2 md:py-4 bg-slate-900/50 border-2 border-slate-700 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/20 placeholder-slate-500 text-white transition-all backdrop-blur-sm"
                   onKeyPress={(e) => e.key === "Enter" && handleSearch()}
                 />
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500">
+                <div className="absolute hidden md:block right-4 top-1/2 -translate-y-1/2 text-slate-500">
                   <Search className="w-5 h-5" />
                 </div>
               </div>
               
               <button
                 onClick={handleSearch}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-400 text-white font-bold rounded-2xl shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                className="px-8 py-2 md:py-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-400 text-white font-bold rounded-lg shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <Search className="w-5 h-5" />
                 <span className="hidden sm:inline">Search</span>
@@ -95,7 +95,7 @@ const AllMovies = () => {
 
 
           {/* Filters Grid */}
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-4 md:gap-6">
             {/* Sort Filter */}
             <div>
               <label className="flex items-center gap-2 mb-3 text-sm font-semibold text-slate-300">
@@ -106,7 +106,7 @@ const AllMovies = () => {
                 <select
                   value={sort}
                   onChange={(e) => handleSortChange(e.target.value)}
-                  className="w-full px-4 py-3.5 bg-slate-900 border-2 border-slate-700 rounded-xl text-white focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all appearance-none cursor-pointer backdrop-blur-sm pr-10"
+                  className="w-full px-4 py-3.5 bg-slate-900 border-2 border-slate-700 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all appearance-none cursor-pointer backdrop-blur-sm pr-10"
                 >
                   <option value="">Default Order</option>
                   <option value="releaseYear">Latest First</option>
@@ -130,7 +130,7 @@ const AllMovies = () => {
                 <select
                   value={genre}
                   onChange={(e) => handleGenreChange(e.target.value)}
-                  className="w-full px-4 py-3.5 bg-slate-900 border-2 border-bl rounded-xl text-white focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 transition-all appearance-none cursor-pointer backdrop-blur-sm pr-10"
+                  className="w-full px-4 py-3.5 bg-slate-900 border-2 border-slate-700 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all appearance-none cursor-pointer backdrop-blur-sm pr-10"
                 >
                   <option value="All">All Genres</option>
                   <option value="Action">Action</option>
