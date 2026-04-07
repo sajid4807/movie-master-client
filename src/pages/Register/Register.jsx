@@ -164,7 +164,7 @@ const Register = () => {
               </div>
 
               {/* Form */}
-              <div onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 
                 {/* Name Input */}
                 <div className="relative">
@@ -248,7 +248,6 @@ const Register = () => {
 
                 {/* Register Button */}
                 <button 
-                  onClick={handleSubmit(onSubmit)}
                   type="submit" 
                   className="relative w-full group overflow-hidden cursor-pointer"
                 >
@@ -292,7 +291,7 @@ const Register = () => {
                     </Link>
                   </p>
                 </div>
-              </div>
+              </form>
 
               {/* Decorative Corner Elements */}
               <div className="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-cyan-500/20" />

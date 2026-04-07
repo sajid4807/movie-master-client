@@ -193,7 +193,7 @@ const Login = () => {
                 {/* Login Button */}
                 <button 
                   type="submit" 
-                  className="relative w-full group overflow-hidden"
+                  className="relative w-full group cursor-pointer overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-300" />
                   <div className="relative px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl font-bold text-white group-hover:from-cyan-600 group-hover:to-blue-600 transition-all duration-300 flex items-center justify-center gap-2 shadow-xl">
@@ -217,7 +217,7 @@ const Login = () => {
                     formRef.current.email.value = "demo@example.com";
                     formRef.current.password.value = "$#@Jid4807";
                   }}
-                  className="relative w-full group overflow-hidden"
+                  className="relative cursor-pointer w-full group overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
                   <div className="relative px-6 py-3 bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/40 rounded-xl font-semibold text-white group-hover:border-purple-400 transition-all duration-300 backdrop-blur-sm flex items-center justify-center gap-2">

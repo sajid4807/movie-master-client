@@ -56,7 +56,7 @@ export default function AboutPlatform() {
               visible: { opacity: 1, y: 0 },
             }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            whileHover={{ scale: 1.05 }}
+            // whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
             <motion.div
