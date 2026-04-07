@@ -107,7 +107,7 @@ const Navbar = () => {
         />
       </div>
 
-      <div className="relative navbar px-4 md:px-20 py-4">
+      <div className="relative body-width navbar py-4">
         {/* Navbar Start - Logo & Mobile Menu */}
         <div className="navbar-start">
           {/* Mobile Menu Button */}

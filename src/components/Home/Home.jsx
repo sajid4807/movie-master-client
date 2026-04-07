@@ -15,7 +15,7 @@ const moviesPromise = fetch(
 
 const Home = () => {
   return (
-    <div className="body-width px-4 md:px-0 ">
+    <div className="body-width px-4 md:px-4">
       <Suspense fallback={<Loading></Loading>}>
         <Banner moviesPromise={moviesPromise}></Banner>
       </Suspense>

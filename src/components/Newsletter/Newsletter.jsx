@@ -35,8 +35,8 @@ export default function Newsletter() {
         </div>
 
         {/* Decorative Background Circles */}
-        <div className="absolute -top-16 -left-16 w-auto md:w-60 h-60 bg-purple-600/10 blur-3xl rounded-full animate-pulse pointer-events-none"></div>
-        <div className="absolute -bottom-16 -right-16 w-auto md:w-60 h-60 bg-blue-600/10 blur-3xl rounded-full animate-pulse pointer-events-none"></div>
+        <div className="absolute -top-16 -left-16 max-w-auto h-60 bg-purple-600/10 blur-3xl rounded-full animate-pulse pointer-events-none"></div>
+        <div className="absolute -bottom-16 -right-16 max-w-auto h-60 bg-blue-600/10 blur-3xl rounded-full animate-pulse pointer-events-none"></div>
       </div>
     </div>
   );

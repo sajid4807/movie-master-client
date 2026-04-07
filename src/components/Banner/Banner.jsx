@@ -12,8 +12,8 @@ const Banner = ({ moviesPromise }) => {
   const movies = use(moviesPromise);
 
   return (
-    <div className="relative py-10 md:py-20 px-4">
-      <div className="relative max-w-7xl mx-auto">
+    <div className="relative py-10 md:py-20">
+      <div className="relative">
 
         {/* Swiper */}
         <Swiper

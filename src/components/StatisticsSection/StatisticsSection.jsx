@@ -57,7 +57,7 @@ const StatisticsSection = () => {
       </div>
 
       {/* Stats Cards Container */}
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto px-4">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
         
         {/* Users Card */}
         <motion.div
